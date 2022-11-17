@@ -24,7 +24,6 @@ app.listen(4040, () => console.log("server is up..."));
 app.post("/addemp", (req, res) => {
   const result = new empModel(req.body);
   result.save();
-  // res.json(result);
   res.send("new card added successfully!");
 });
 app.post("/updateemp", async (req, res) => {
@@ -40,22 +39,7 @@ app.post("/deleteemp", async (req, res) => {
   res.send(`new card delete sucessfully ${req.fname}`);
 });
 
-// app.post("/user",(req,res)=>{
-//   const user={
-//     userName:"admin",
-//     password:"Admin@123"
-//   }
-//   const {userName,password}=req.body
-//   if(user.userName===userName&& user.password===password){
-//     const OTP=Math.floor(1000+Math.random()*9000);
-//     const securitykey="avinash";
-//     const payload={userName,OTP};
-//     const OTPToken= jwt.sign(payload.securitykey);
-//     res.json(OTP,OTPToken)
-//   }else{
-//     res.send("please chek your username password")
-//   }
-// })
+
 
 app.post("/user", async (req, res) => {
   const result = await userModel.find(req.body);
@@ -65,7 +49,7 @@ app.post("/user", async (req, res) => {
     const payload={username,password};
     const jwttoken= jwt.sign(payload,securitykey);
     res.json({jwttoken,auth:true})
-    // res.send(`login is successful ${req.body.username}`);
+    // res.send(`login is successful ${req.body.us.ername}`);
   }else{
     res.send(`login is not successful ${req.body.username}`);
   }
